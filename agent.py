@@ -1,3 +1,22 @@
+##############################################################################
+# Author: Christopher M. Parrett
+#
+# Computational Social Science 610: Agent Based Modeling and Simulation
+# Spring 2017, Department of Computational and Data Sciences,
+# Under the most excellent tutelage of Dr. R Axtell, George Mason Univ
+#
+# Developed on a Windows 10 platform, AMD PhenomII X6 3.3GHz w/ 8GB RAM
+# using Python 3.5.2 | Anaconda 4.2.0 (64-bit).
+##############################################################################
+##############################################################################
+
+##############################################################################
+##############################################################################
+# CLASS::Agent
+#
+# Purpose: Implements the base functionality of a NetLogo "Turtle"
+#
+#
 class Agent:
     def __init__(self,uid,x,y):
         self.UID = uid
@@ -11,6 +30,8 @@ class Agent:
         self.wealth = 0.0 #random.gauss(cit_wealth_mean, cit_wealth_sd)
         self.power = 0
 
+    #####################################################################
+    ## Standard Set Routines
     def setUID(): self.UID = x
     def setIdeo(self,x): self.ideo = x
     def setWealth(self,x): self.wealth = x
@@ -21,6 +42,8 @@ class Agent:
     def setYCor(self,x): self.ycor = x
     def setHidden(self,x): self.hidden = x
 
+    #####################################################################
+    ## Standard Get Routines
     def getUID(self): return self.UID
     def getIdeo(self): return self.ideo
     def getWealth(self): return self.wealth
