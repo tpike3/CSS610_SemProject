@@ -117,16 +117,16 @@ class CITSLinkage:
   ###__> IMPLEMENT <__###
             #NL: ask end1
             #NL: if empty? [cboeu1] of my-out-links with [citlink? = ticks]:
-            #NL: if orig.getMaxOutlinks(idx,cboeu1) is None:
-            #NL:     link.setTempEu(0)
-            #else:
-            #NL:          set temp-eu max [cboeu1] of my-out-links with [citlink? = ticks]
-            #          orig.getMaxOutlinks(idx,cboeu1)
-            #    link.setTempEu()
-            #NL:          set minpref min [diffpref1] of my-out-links with [citlink? = ticks]
-            #
+            if getLinksFromNode(t,orig) is None:
+                link.setTempEu(0)
+            else:
+                #NL: set temp-eu max [cboeu1] of my-out-links with [citlink? = ticks]
+                orig.getMaxOutlinks(t,c.getUID(),"cboeu")
+                    #NL: set minpref min [diffpref1] of my-out-links with [citlink? = ticks]
+                    c.getMinOutlinks(t,c.getUID(),"diffpref")
             #NL: ask end2 [
             #NL: if empty? [cboeu1] of my-in-links with [citlink? = ticks]:
+                if getLinksToNode(t,c) is None:
             #NL:          set temp-eu 0
             #else:
             #NL:          set temp-eu max [cboeu2] of my-in-links  with [citlink? = ticks]
@@ -175,11 +175,13 @@ class CITSLinkage:
     ##    3)
     ##
     ## Returns: Nothing
-    def getLinksFromNode(self,t,orig):
+    def getLinksFromNode(self,t,node):
         ret = []
-        for link in linkcits:
-            if orig == link.getOrignode():
-        return self.linkcits[t].georigt[orig]
+        for link in linkcits[t]:
+            if node == link.getOrignode():
+                ret.append(link.getDestnode())
+
+        return ret
 
     ##----------------------------------------------------------------------
     ## Name:
