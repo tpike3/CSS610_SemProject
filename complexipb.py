@@ -109,7 +109,8 @@ class ComplexIPBModel:
         self.StakeholderTalk()
         #self.Conflict()
         #self.UpdatePlot()
-
+        self.Conflict()
+        
         self.ticks += 1
 
     ##----------------------------------------------------------------------
@@ -240,11 +241,11 @@ class ComplexIPBModel:
         #    if scbo-power >= sum [own-power] of cits with [sturcbo? != 1] * power-parity and
         #        abs (scbo-pref - global_gov_ideo) > threshold:
         non_sturcbo = 0
-        for cit in self.CITSarr: 
+        for cit in self.CITSarr.getCITS(): 
             if cit.getSturcbo == False:
                 non_sturcbo += cit.getOwn(Enity.POW)
         
-        for cit in self.CITSarr: 
+        for cit in self.CITSarr.getCITS(): 
             if cit.getSturcbo == True: 
                  #c.setCbo(Entity.POW,(t2) + (t3) - (c.getOwn(Entity.POW)* ((t4) + (t5) - 1)))
                  #[
@@ -266,7 +267,7 @@ if __name__ == '__main__':
     
     sim = ComplexIPBModel()
     
-    sim.Setup(100)
+    sim.Setup(99)
     for i in range(3):
         sim.Step()
         print("####################################################################")
